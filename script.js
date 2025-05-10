@@ -16,8 +16,6 @@ function init() {
      renderTrashClient(); 
 }
 
-/* const isPayingInput = document.getElementById("is_paying"); */
-
 function moveClientInClient() {
     const nameOfClientInput = document.getElementById("name_of_client");
     const clientName = nameOfClientInput.value;
@@ -53,12 +51,7 @@ function moveToPaying(notPayingIndex) {
         alert("Bitte das Datumsfeld ausfüllen!");
         return;
     }
-/* const client = notPayingClients[notPayingIndex];
-client.isPaying = isPaying;
-if (!paymentCompleteClients.includes(client)) {
-    paymentCompleteClients.push(client);
-} */
-        //ALte Version ---> 
+   //ALte Version ---> 
     const client = notPayingClients[notPayingIndex];
     client.isPaying = isPaying;
     paymentCompleteClients.push(client);
