@@ -10,10 +10,12 @@ function init() {
     getNotPayingFromLocalStorage();
     getFromLocalStorage();
     getPaymentCompleteClientsFromLocalStorage();
+
     renderClient();
     renderClientNotPaying();
     renderCompletedPayment();
-     renderTrashClient(); 
+    renderTrashClient();
+    renderArchivClient();
 }
 
 function moveClientInClient() {
@@ -51,12 +53,12 @@ function moveToPaying(notPayingIndex) {
         alert("Bitte das Datumsfeld ausfüllen!");
         return;
     }
-   //ALte Version ---> 
+    //ALte Version ---> 
     const client = notPayingClients[notPayingIndex];
     client.isPaying = isPaying;
     paymentCompleteClients.push(client);
     notPayingClients.splice(notPayingIndex, 1);   // Entfernt den Eintrag aus notPayingClients
-    
+
     console.log("bezahlt:", paymentCompleteClients);
     savedpaymenttoLocalStorage();
     saveNotPayingToLocalStorage()
@@ -66,7 +68,7 @@ function moveToPaying(notPayingIndex) {
 
 
 
-function moveToTrash(paymentCompleteIndex){
+function moveToTrash(paymentCompleteIndex) {
     const client = paymentCompleteClients[paymentCompleteIndex];
     if (!trashClients.includes(client)) {
         trashClients.push(client);
@@ -78,18 +80,20 @@ function moveToTrash(paymentCompleteIndex){
     renderClientNotPaying();
     renderCompletedPayment();
     renderTrashClient();
+    renderArchivClient();
 }
 
 
-function moveToArchiv(paymentCompleteIndex){
-      const client = paymentCompleteClients[paymentCompleteIndex];
+function moveToArchiv(paymentCompleteIndex) {
+    const client = paymentCompleteClients[paymentCompleteIndex];
     if (!archivClients.includes(client)) {
-       archivClients.push(client);
+        archivClients.push(client);
         paymentCompleteClients.splice(paymentCompleteIndex, 1);
     }
     console.log("Archiv", archivClients);
     saveArchivtoLocalStorage()
-     renderClientNotPaying();
+    savedpaymenttoLocalStorage()
+    renderClientNotPaying();
     renderCompletedPayment();
     renderTrashClient();
     renderArchivClient();
